@@ -1,12 +1,27 @@
-'use client'
-import React from 'react'
-import { cn } from '@/lib/utils'
+"use client";
+import React from "react";
+import { cn } from "@/lib/utils";
 
-export default function ProgressBar({ className }: { className?: string }) {
-  // TODO: get progress from state
+export default function ProgressBar({
+  className,
+  currentQuestion,
+  totalQuestions,
+}: {
+  className?: string;
+  currentQuestion: number;
+  totalQuestions: number;
+}) {
   return (
-    <div className={cn('h-2 bg-gray-200 rounded-full', className)}>
-      <div className='h-full bg-blue-500 rounded-full transition-all duration-300' style={{ width: '50%' }}></div>
+    <div
+      className={cn(
+        " h-2 bg-black/70 rounded-full shadow-lg shadow-green-500/50",
+        className
+      )}
+    >
+      <div
+        className="h-full bg-green-300 rounded-full shadow-lg shadow-green-500/50 transition-all duration-300"
+        style={{ width: `${((currentQuestion + 1) / totalQuestions) * 100}%` }}
+      ></div>
     </div>
-  )
+  );
 }

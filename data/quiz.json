@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "question": "1あなたはどのような性格ですか？",
+    "options": ["内向的", "外向的", "冷静", "情熱的"],
+    "correctAnswer": 1
+  },
+  {
+    "id": 2,
+    "question": "2あなたはどのような趣味ですか？",
+    "options": ["読書", "旅行", "ゲーム", "料理"],
+    "correctAnswer": 1
+  },
+  {
+    "id": 3,
+    "question": "3あなたはどのような仕事をしていますか？",
+    "options": ["IT", "医療", "教育", "金融"],
+    "correctAnswer": 1
+  },
+  {
+    "id": 4,
+    "question": "4あなたはどのような性格ですか？",
+    "options": ["内向的", "外向的", "冷静", "情熱的"],
+    "correctAnswer": 1
+  },
+  {
+    "id": 5,
+    "question": "5あなたはどのような性格ですか？",
+    "options": ["内向的", "外向的", "冷静", "情熱的"],
+    "correctAnswer": 1
+  },
+  {
+    "id": 6,
+    "question": "6あなたはどのような性格ですか？",
+    "options": ["内向的", "外向的", "冷静", "情熱的"],
+    "correctAnswer": 1
+  }
+]
