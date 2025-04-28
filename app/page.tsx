@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useState } from "react";
 import { BackgroundLines } from "@/components/ui/background-lines";
 import { StarsBackground } from "@/components/ui/stars-background";
@@ -10,7 +11,7 @@ import LetterGlitch from "@/components/LetterGlitch";
 export default function Home() {
   const [isQuizActive, setIsQuizActive] = useState(false);
   return (
-    <div className="w-full h-full relative overflow-hidden">
+    <div className="w-full h-screen relative overflow-hidden">
       <LetterGlitch
         glitchSpeed={50}
         centerVignette={true}
