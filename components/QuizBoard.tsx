@@ -1,23 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import ProgressBar from "./QuizProgressBar";
 import QuizCard from "./QuizCard";
 import quizData from "@/data/quiz.json";
 import ResultCard from "./ResultCard";
+import confetti from "canvas-confetti";
 
 export default function QuizBoard() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [isCorrect, setIsCorrect] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const nextQuestion = () => {
     if (currentQuestion < quizData.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setIsFinished(true);
+      // お祝い效果
+      const myConfetti = confetti.create(canvasRef.current, {
+        resize: true,
+        useWorker: true,
+      });
+
+      myConfetti({
+        particleCount: 100,
+        spread: 140,
+      });
     }
   };
 
@@ -27,6 +39,12 @@ export default function QuizBoard() {
       setScore(score + 1);
     }
     nextQuestion();
+  };
+
+  const handleRestart = () => {
+    setCurrentQuestion(0);
+    setScore(0);
+    setIsFinished(false);
   };
 
   return (
@@ -43,7 +61,7 @@ export default function QuizBoard() {
         totalQuestions={quizData.length}
       />
       {isFinished ? (
-        <ResultCard score={score} />
+        <ResultCard score={score} onRestart={handleRestart} />
       ) : (
         <QuizCard
           question={quizData[currentQuestion].question}

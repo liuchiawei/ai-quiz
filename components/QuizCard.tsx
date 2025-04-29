@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
+import DecryptedText from './decryptedText'
 
 export default function QuizCard({ question, options, correctAnswer, onAnswer }: { question: string, options: string[], correctAnswer: number, onAnswer: (isCorrect: boolean) => void }) {
   return (
@@ -9,12 +9,12 @@ export default function QuizCard({ question, options, correctAnswer, onAnswer }:
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: 'spring', bounce: 0.5, duration: 1, ease: "easeOut" }}
       className='w-[360px] h-[480px] flex flex-col items-center justify-center bg-gray-900 shadow-2xl shadow-green-700/50 rounded-xl overflow-hidden'>
-      <div data-quiz-question className='w-full h-full p-4 flex items-center justify-center bg-gray-900'>
-        <p className='text-xl font-bold text-white text-justify'>{question}</p>
+      <div data-quiz-question className='w-full h-48 p-8 flex items-start justify-between bg-gray-900'>
+        <DecryptedText text={question} sequential={true} speed={18} animateOn='view' className='text-xl font-bold text-white text-justify' encryptedClassName='text-teal-600 text-sm'/>
       </div>
       <div data-quiz-options className='w-full h-full grid grid-cols-2 *:size-full *:rounded-none *:cursor-pointer'>
         {options.map((option, index) => (
-          <Button key={index} variant={'ghost'} onClick={() => onAnswer(index === (correctAnswer - 1))} className={`text-lg text-gray-400 bg-gray-700 hover:bg-gray-900 hover:inset-shadow-sm hover:inset-shadow-black/70 hover:text-gray-100 ${index === (correctAnswer - 1) ? 'active:bg-cyan-400' : 'active:bg-rose-400'}`}>{option}</Button>
+          <div key={index} onClick={() => onAnswer(index === (correctAnswer - 1))} className={`w-full h-full flex items-center justify-center p-4 text-sm md:text-md text-justify text-gray-400 bg-gray-700 hover:bg-gray-900 hover:inset-shadow-sm hover:inset-shadow-black/70 hover:text-gray-100 ${index === (correctAnswer - 1) ? 'active:bg-green-400' : 'active:bg-rose-400'}`}>{option}</div>
         ))}
       </div>
     </motion.div>

@@ -1,9 +1,11 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { Herr_Von_Muellerhoff } from "next/font/google";
+import { motion } from "motion/react";
+import { Button } from "@/components/ui/button";
+import { RotateCcw } from "lucide-react";
+import { useEffect, useState } from "react";
 
-export default function ResultCard({ score }: { score: number }) {
+export default function ResultCard({ score, onRestart }: { score: number, onRestart: () => void }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -48,6 +50,12 @@ export default function ResultCard({ score }: { score: number }) {
       >
         comment here.
       </motion.p>
+      <Button
+        className="rounded-full size-8 cursor-pointer"
+        onClick={onRestart}
+      >
+        <RotateCcw className="size-4" />
+      </Button>
     </motion.div>
   );
 }
