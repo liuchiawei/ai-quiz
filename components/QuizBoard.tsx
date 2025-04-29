@@ -21,15 +21,17 @@ export default function QuizBoard() {
     } else {
       setIsFinished(true);
       // お祝い效果
-      const myConfetti = confetti.create(canvasRef.current, {
-        resize: true,
-        useWorker: true,
-      });
+      if (canvasRef.current) {
+        const myConfetti = confetti.create(canvasRef.current, {
+          resize: true,
+          useWorker: true,
+        });
 
-      myConfetti({
-        particleCount: 100,
-        spread: 140,
-      });
+        myConfetti({
+          particleCount: 100,
+          spread: 140,
+        });
+      }
     }
   };
 
@@ -55,6 +57,10 @@ export default function QuizBoard() {
       transition={{ duration: 0.5 }}
       className="relative w-full h-full flex flex-col items-center justify-center gap-4 p-10 z-10"
     >
+      <canvas
+        ref={canvasRef}
+        className="absolute top-0 left-0 w-full h-full -z-10 touch-none select-none"
+      />
       <ProgressBar
         className="w-[300px] absolute top-4 left-1/2 -translate-x-1/2"
         currentQuestion={currentQuestion}

@@ -1,16 +1,13 @@
-'use client';
-
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
-import { useEffect, useState } from "react";
 
 export default function ResultCard({ score, onRestart }: { score: number, onRestart: () => void }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ type: "spring", bounce: 0.5, duration: 1, ease: "easeOut" }}
+      transition={{ type: "spring", bounce: 0.6, duration: 1, ease: "easeOut" }}
       className="w-[360px] h-[480px] flex flex-col items-center justify-center gap-4 bg-red-500 shadow-lg rounded-xl overflow-hidden"
     >
       <motion.h2
