@@ -11,7 +11,6 @@ import confetti from "canvas-confetti";
 export default function QuizBoard() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [isCorrect, setIsCorrect] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -37,7 +36,6 @@ export default function QuizBoard() {
 
   const handleAnswer = (isCorrect: boolean) => {
     if (isCorrect) {
-      setIsCorrect(true);
       setScore(score + 1);
     }
     nextQuestion();
@@ -67,7 +65,7 @@ export default function QuizBoard() {
         totalQuestions={quizData.length}
       />
       {isFinished ? (
-        <ResultCard score={score} onRestart={handleRestart} />
+        <ResultCard score={score} onRestart={handleRestart} quizLength={quizData.length} />
       ) : (
         <QuizCard
           question={quizData[currentQuestion].question}
