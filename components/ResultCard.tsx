@@ -2,7 +2,25 @@ import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
 
-export default function ResultCard({ score, onRestart, quizLength }: { score: number, onRestart: () => void, quizLength: number }) {
+type TypeScores = {
+  基礎知識: number;
+  技術的理解: number;
+  倫理: number;
+  応用: number;
+  高度概念: number;
+};
+
+export default function ResultCard({
+  score,
+  onRestart,
+  quizLength,
+  typeScores,
+}: {
+  score: number;
+  onRestart: () => void;
+  quizLength: number;
+  typeScores: TypeScores;
+}) {
   const correctRate = (score / quizLength) * 100;
   return (
     <motion.div
@@ -34,7 +52,8 @@ export default function ResultCard({ score, onRestart, quizLength }: { score: nu
         }}
         className="text-7xl font-bold text-gray-50"
       >
-        {correctRate.toFixed(1)}<span className="text-sm font-normal">%</span>
+        {correctRate.toFixed(1)}
+        <span className="text-sm font-normal">%</span>
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, y: 50 }}
@@ -48,6 +67,23 @@ export default function ResultCard({ score, onRestart, quizLength }: { score: nu
       >
         {score} / {quizLength}
       </motion.p>
+      <div className="flex flex-col gap-2">
+        {Object.entries(typeScores).map(([type, score]) => (
+          <motion.p
+            key={type}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              type: "spring",
+              bounce: 0.5,
+              duration: 1,
+              ease: "easeOut",
+            }}
+          >
+            {type}: {score}
+          </motion.p>
+        ))}
+      </div>
       <Button
         className="rounded-full size-8 cursor-pointer"
         onClick={onRestart}

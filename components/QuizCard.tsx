@@ -9,8 +9,8 @@ export default function QuizCard({ question, options, correctAnswer, onAnswer }:
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: 'spring', bounce: 0.5, duration: 1, ease: "easeOut" }}
       className='w-[360px] h-[480px] flex flex-col items-center justify-center bg-gray-900 shadow-2xl shadow-green-700/50 rounded-xl overflow-hidden'>
-      <div data-quiz-question className='w-full h-48 p-8 flex items-start justify-between bg-gray-900'>
-        <DecryptedText text={question} sequential={true} speed={18} animateOn='view' className='text-xl font-bold text-white text-justify' encryptedClassName='text-teal-600 text-sm'/>
+      <div data-quiz-question className='w-full h-40 p-8 flex items-start justify-between bg-gray-900'>
+        <DecryptedText text={question} sequential={true} speed={18} animateOn='view' className='text-xl font-bold text-white text-justify tracking-wide leading-9' encryptedClassName='text-teal-600 text-sm'/>
       </div>
       <div data-quiz-options className='w-full h-full grid grid-cols-2 *:size-full *:rounded-none'>
         {options.map((option, index) => (
