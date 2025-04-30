@@ -3,14 +3,7 @@ import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
 import RadarChartCard from "@/components/RadarChart";
 import AnimatedCounter from "@/components/AnimatedCounter";
-
-type TypeScores = {
-  基礎知識: number;
-  技術的理解: number;
-  倫理: number;
-  応用: number;
-  高度概念: number;
-};
+import { TypeScores } from "@/components/QuizBoard";
 
 export default function ResultCard({
   score,
