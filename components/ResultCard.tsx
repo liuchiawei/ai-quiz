@@ -73,7 +73,7 @@ export default function ResultCard({
       </div>
       <RadarChartCard typeScores={typeScores} />
       <Button
-        className="rounded-full size-8 cursor-pointer border-none"
+        className="rounded-full size-8 cursor-pointer border-none hover:shadow-md hover:shadow-emerald-700/70"
         onClick={onRestart}
         variant="outline"
       >
