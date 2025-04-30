@@ -2,11 +2,12 @@
 
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import ProgressBar from "./QuizProgressBar";
-import QuizCard from "./QuizCard";
-import quizData from "@/data/quiz.json";
-import ResultCard from "./ResultCard";
 import confetti from "canvas-confetti";
+import ProgressBar from "@/components/QuizProgressBar";
+import QuizCard from "@/components/QuizCard";
+import ResultCard from "@/components/ResultCard";
+import Timer from "@/components/timer";
+import quizData from "@/data/quiz.json";
 
 export type TypeScores = {
   基礎知識: number;
@@ -28,6 +29,9 @@ export default function QuizBoard() {
   });
   const [isFinished, setIsFinished] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // shuffle the order of the quiz data
+  const shuffledQuizData = quizData.sort(() => Math.random() - 0.5);
 
   const nextQuestion = () => {
     if (currentQuestion < quizData.length - 1) {
@@ -113,12 +117,19 @@ export default function QuizBoard() {
       ) : (
         // クイズ進行中のクイズカード
         <QuizCard
-          question={quizData[currentQuestion].question}
-          options={quizData[currentQuestion].options}
-          correctAnswer={quizData[currentQuestion].correctAnswer}
+          question={shuffledQuizData[currentQuestion].question}
+          options={shuffledQuizData[currentQuestion].options}
+          correctAnswer={shuffledQuizData[currentQuestion].correctAnswer}
           onAnswer={handleAnswer}
         />
       )}
+      {/* タイマー */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center">
+        <h2 className="text-gray-300 text-md">
+          タイム
+        </h2>
+        <Timer isFinished={isFinished} className={`${isFinished ? "text-gray-400" : "text-emerald-600"} text-sm tracking-wider`} />
+      </div>
     </motion.div>
   );
 }
