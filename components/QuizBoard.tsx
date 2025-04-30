@@ -49,7 +49,7 @@ export default function QuizBoard() {
 
         myConfetti({
           particleCount: 100,
-          spread: 140,
+          spread: 120,
         });
       }
     }
@@ -93,12 +93,12 @@ export default function QuizBoard() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="relative w-full h-full flex flex-col items-center justify-center gap-4 p-10 z-10"
+      className="relative w-full h-full flex flex-col items-center justify-center p-2 gap-4 z-10"
     >
       {/* お祝いエフェクト */}
       <canvas
         ref={canvasRef}
-        className="absolute top-0 left-0 w-full h-full touch-none select-none pointer-events-none"
+        className="fixed top-0 left-0 w-full h-full touch-none select-none pointer-events-none"
       />
       {/* プログレスバー */}
       <ProgressBar
