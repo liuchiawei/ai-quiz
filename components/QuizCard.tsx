@@ -31,16 +31,16 @@ export default function QuizCard({ question, options, correctAnswer, onAnswer }:
     >
       <div
         data-quiz-question
-        className="w-full max-w-[420px] h-42 p-8 flex items-start bg-gray-950"
+        className="w-full max-w-[420px] h-full p-8 flex items-start bg-gray-950"
       >
         <DecryptedText
           text={question}
           sequential={true}
-          speed={18}
+          speed={12}
           animateOn="view"
           className="text-xl font-bold text-white text-justify tracking-wide leading-9 text-wrap"
-          parentClassName="w-full"
-          encryptedClassName="text-emerald-600 text-sm"
+          parentClassName="w-full max-w-[420px]"
+          encryptedClassName="text-emerald-600 text-sm break-words"
         />
       </div>
       <div
@@ -51,7 +51,7 @@ export default function QuizCard({ question, options, correctAnswer, onAnswer }:
           <div
             key={index}
             onClick={() => onAnswer(index === correctAnswer - 1)}
-            className={`w-full h-full flex items-center justify-center p-4 text-sm md:text-md text-justify text-gray-400 bg-gray-700 cursor-pointer select-none hover:bg-gray-900 hover:inset-shadow-sm hover:inset-shadow-black/70 hover:text-gray-100 ${
+            className={`w-full h-full flex items-center justify-center p-6 text-sm md:text-md text-justify text-gray-400 bg-gray-700 cursor-pointer select-none hover:bg-gray-900 hover:inset-shadow-sm hover:inset-shadow-black/70 hover:text-gray-100 ${
               index === correctAnswer - 1
                 ? "active:bg-emerald-400"
                 : "active:bg-rose-400"

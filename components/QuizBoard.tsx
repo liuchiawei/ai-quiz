@@ -7,13 +7,14 @@ import ProgressBar from "@/components/QuizProgressBar";
 import QuizCard from "@/components/QuizCard";
 import ResultCard from "@/components/ResultCard";
 import Timer from "@/components/timer";
-import quizData from "@/data/quiz.json";
+import quizData from "@/data/quiz_hai.json";
 
 export type TypeScores = {
   基礎知識: number;
   倫理: number;
   高度概念: number;
-  技術的理解: number;
+  未来のトレンド: number;
+  技術の理解: number;
   応用: number;
 };
 
@@ -24,7 +25,8 @@ export default function QuizBoard() {
     基礎知識: 0,
     倫理: 0,
     高度概念: 0,
-    技術的理解: 0,
+    未来のトレンド: 0,
+    技術の理解: 0,
     応用: 0,
   });
   const [isFinished, setIsFinished] = useState(false);
@@ -111,10 +113,11 @@ export default function QuizBoard() {
     // タイプごとのスコア初期化
     setTypeScores({
       基礎知識: 0,
-      技術的理解: 0,
       倫理: 0,
-      応用: 0,
       高度概念: 0,
+      未来のトレンド: 0,
+      技術の理解: 0,
+      応用: 0
     });
     // クイズ終了フラグ初期化
     setIsFinished(false);
@@ -141,6 +144,16 @@ export default function QuizBoard() {
         currentQuestion={currentQuestion}
         totalQuestions={quizData.length}
       />
+      {/* タイマー */}
+      <div className="absolute top-8 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center">
+        <h2 className="text-gray-400 text-sm">タイム</h2>
+        <Timer
+          isFinished={isFinished}
+          className={`text-lg tracking-wider ${
+            isFinished ? "text-gray-300" : "text-emerald-400/70"
+          } `}
+        />
+      </div>
       {/* クイズ終了時の結果カード */}
       {isFinished ? (
         <ResultCard
@@ -158,16 +171,6 @@ export default function QuizBoard() {
           onAnswer={handleAnswer}
         />
       )}
-      {/* タイマー */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center">
-        <h2 className="text-gray-400 text-sm">タイム</h2>
-        <Timer
-          isFinished={isFinished}
-          className={`text-lg tracking-wider ${
-            isFinished ? "text-gray-300" : "text-emerald-400/70"
-          } `}
-        />
-      </div>
     </motion.div>
   );
 }
