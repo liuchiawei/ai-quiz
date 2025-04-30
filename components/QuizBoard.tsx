@@ -125,10 +125,13 @@ export default function QuizBoard() {
       )}
       {/* タイマー */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center">
-        <h2 className="text-gray-300 text-md">
-          タイム
-        </h2>
-        <Timer isFinished={isFinished} className={`${isFinished ? "text-gray-400" : "text-emerald-600"} text-sm tracking-wider`} />
+        <h2 className="text-gray-400 text-sm">タイム</h2>
+        <Timer
+          isFinished={isFinished}
+          className={`text-lg tracking-wider ${
+            isFinished ? "text-gray-300" : "text-emerald-400/70"
+          } `}
+        />
       </div>
     </motion.div>
   );

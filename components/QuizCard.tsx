@@ -1,8 +1,27 @@
 'use client'
 import { motion } from 'framer-motion'
 import DecryptedText from './decryptedText'
+import { useEffect } from 'react'
 
 export default function QuizCard({ question, options, correctAnswer, onAnswer }: { question: string, options: string[], correctAnswer: number, onAnswer: (isCorrect: boolean) => void }) {
+  // キーボードで回答を選択できるようにする
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      const key = event.key
+      if (key >= '1' && key <= '4') {
+        const index = parseInt(key) - 1
+        if (index < options.length) {
+          onAnswer(index === (correctAnswer - 1))
+        }
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyPress)
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress)
+    }
+  }, [options.length, correctAnswer, onAnswer])
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
