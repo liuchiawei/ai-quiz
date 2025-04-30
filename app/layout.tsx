@@ -41,6 +41,7 @@ export default function RootLayout({
           centerVignette={true}
           outerVignette={false}
           smooth={true}
+          className="brightness-50"
         />
       </body>
     </html>

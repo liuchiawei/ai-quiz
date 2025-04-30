@@ -28,7 +28,7 @@ export default function ResultCard({
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: "spring", bounce: 0.6, duration: 1, ease: "easeOut" }}
-      className="w-[360px] h-[480px] flex flex-col items-center justify-between gap-4 pt-10 pb-4 text-center bg-gray-900 text-gray-400 shadow-lg rounded-xl overflow-hidden"
+      className="w-[360px] h-[480px] flex flex-col items-center justify-between gap-4 pt-10 pb-4 text-center bg-gray-950 text-gray-400 shadow-lg rounded-xl overflow-hidden"
     >
       <div className="flex flex-col items-center justify-center gap-1">
         <motion.h2
