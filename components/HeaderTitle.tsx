@@ -12,7 +12,7 @@ export default function HeaderTitle() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         custom={0}
-        className="bg-clip-text text-transparent text-center bg-gradient-to-b from-gray-500 to-white text-2xl md:text-4xl lg:text-8xl relative z-20 font-black text-shadow-lg tracking-tight select-none"
+        className="bg-clip-text text-transparent text-center bg-gradient-to-b from-gray-500 to-white text-5xl md:text-6xl lg:text-8xl relative z-20 font-black text-shadow-lg tracking-tight select-none"
       >
         AIに対する
         <br />
