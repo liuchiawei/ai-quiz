@@ -13,7 +13,7 @@ import { map } from "framer-motion/client";
 
 const chartConfig = {
   value: {
-    label: "スコア",
+    label: "正解数",
   },
 } satisfies ChartConfig;
 
