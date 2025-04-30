@@ -28,29 +28,8 @@ export default function QuizBoard() {
     応用: 0,
   });
   const [isFinished, setIsFinished] = useState(false);
-  const [userId, setUserId] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const startTime = useRef<number>(0);
-
-  // ユーザー初期化
-  useEffect(() => {
-    const initializeUser = async () => {
-      try {
-        const response = await fetch("/api/user", {
-          method: "POST",
-        });
-        const data = await response.json();
-        if (data.success) {
-          setUserId(data.user.id);
-          startTime.current = Date.now();
-        }
-      } catch (error) {
-        console.error("Error initializing user:", error);
-      }
-    };
-
-    initializeUser();
-  }, []);
 
   // 問題の順序をランダムに並べ替え、重複を避ける
   const shuffledQuizData = useMemo(() => {
@@ -68,31 +47,31 @@ export default function QuizBoard() {
       setIsFinished(true);
 
       // クイズ結果の記録を資料庫に保存
-      if (userId) {
-        try {
-          const response = await fetch("/api/record", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              score,
-              typeScores,
-              timeSpent: Math.floor((Date.now() - startTime.current) / 1000),
-              userId,
-            }),
-          });
+      // if (userId) {
+      //   try {
+      //     const response = await fetch("/api/record", {
+      //       method: "POST",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //       body: JSON.stringify({
+      //         score,
+      //         typeScores,
+      //         timeSpent: Math.floor((Date.now() - startTime.current) / 1000),
+      //         userId,
+      //       }),
+      //     });
 
-          if (!response.ok) {
-            throw new Error("Failed to save record");
-          }
+      //     if (!response.ok) {
+      //       throw new Error("Failed to save record");
+      //     }
 
-          const data = await response.json();
-          console.log("Record saved successfully:", data);
-        } catch (error) {
-          console.error("Error saving record:", error);
-        }
-      }
+      //     const data = await response.json();
+      //     console.log("Record saved successfully:", data);
+      //   } catch (error) {
+      //     console.error("Error saving record:", error);
+      //   }
+      // }
 
       // お祝い效果
       if (canvasRef.current) {
