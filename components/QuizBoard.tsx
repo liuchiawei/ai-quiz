@@ -93,7 +93,7 @@ export default function QuizBoard() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="relative w-full h-full flex flex-col items-center justify-center p-2 gap-4 z-10"
+      className="relative w-full h-screen flex flex-col items-center justify-center p-4 gap-4 z-10"
     >
       {/* お祝いエフェクト */}
       <canvas

@@ -10,10 +10,11 @@ import {
 } from "@/components/ui/chart";
 import { TypeScores } from "./QuizBoard";
 import { map } from "framer-motion/client";
+import quizData from "@/data/quiz.json";
 
 const chartConfig = {
   value: {
-    label: "正解数",
+    label: "正解率",
   },
 } satisfies ChartConfig;
 
@@ -24,16 +25,19 @@ export default function RadarChartCard({
   className?: string;
   typeScores: TypeScores;
 }) {
+  // 計算每種類型的題目總數
+  const typeCounts: Record<string, number> = {};
+  quizData.forEach((question) => {
+    typeCounts[question.type] = (typeCounts[question.type] || 0) + 1;
+  });
+
   const chartData = Object.entries(typeScores).map(([name, value]) => ({
     name,
-    value,
+    value: Math.round((value / typeCounts[name]) * 100),
   }));
   return (
     <div className="w-full h-full flex justify-center items-center">
-      <ChartContainer
-        config={chartConfig}
-        className="w-full h-full"
-      >
+      <ChartContainer config={chartConfig} className="w-full h-full">
         <RadarChart data={chartData}>
           <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
           <PolarAngleAxis dataKey="name" />
