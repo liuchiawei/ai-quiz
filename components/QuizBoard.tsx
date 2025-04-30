@@ -98,7 +98,7 @@ export default function QuizBoard() {
       {/* お祝いエフェクト */}
       <canvas
         ref={canvasRef}
-        className="absolute top-0 left-0 w-full h-full -z-10 touch-none select-none"
+        className="absolute top-0 left-0 w-full h-full touch-none select-none pointer-events-none"
       />
       {/* プログレスバー */}
       <ProgressBar
