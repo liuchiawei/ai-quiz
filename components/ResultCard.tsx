@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
 import RadarChartCard from "@/components/RadarChart";
-
+import AnimatedCounter from "@/components/AnimatedCounter";
 
 type TypeScores = {
   基礎知識: number;
@@ -23,13 +23,13 @@ export default function ResultCard({
   quizLength: number;
   typeScores: TypeScores;
 }) {
-  const correctRate = (score / quizLength) * 100;
+  const correctRate = Math.round((score / quizLength) * 100);
   return (
     <motion.div
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: "spring", bounce: 0.6, duration: 1, ease: "easeOut" }}
-      className="w-[360px] h-[480px] flex flex-col items-center justify-between gap-4 pt-10 pb-4 text-center bg-linear-[150deg] from-black to-gray-900 text-gray-400 shadow-2xl shadow-emerald-700/50 rounded-xl overflow-hidden"
+      className="w-full max-w-[420px] h-full max-h-[594px] flex flex-col items-center justify-between gap-4 pt-10 pb-4 text-center bg-linear-[150deg] from-black to-gray-900 text-gray-400 shadow-2xl shadow-emerald-700/50 rounded-xl overflow-hidden"
     >
       <div className="flex flex-col items-center justify-center gap-1">
         <motion.h2
@@ -53,9 +53,9 @@ export default function ResultCard({
             duration: 1,
             ease: "easeOut",
           }}
-          className="text-7xl font-bold text-gray-50"
+          className="text-7xl font-black text-gray-50 flex items-end gap-1"
         >
-          {correctRate.toFixed(1)}
+          <AnimatedCounter value={correctRate} speed={0.5} className="text-7xl font-bold text-gray-50" />
           <span className="text-sm font-normal">%</span>
         </motion.h1>
         <motion.p
