@@ -25,7 +25,7 @@ export default function RadarChartCard({
   className?: string;
   typeScores: TypeScores;
 }) {
-  // 計算每種類型的題目總數
+  // 各タイプの問題数を計算
   const typeCounts: Record<string, number> = {};
   quizData.forEach((question) => {
     typeCounts[question.type] = (typeCounts[question.type] || 0) + 1;
