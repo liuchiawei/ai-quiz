@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
 import RadarChartCard from "@/components/RadarChart";
-
+import AnimatedCounter from "@/components/AnimatedCounter";
 
 type TypeScores = {
   基礎知識: number;
@@ -23,7 +23,7 @@ export default function ResultCard({
   quizLength: number;
   typeScores: TypeScores;
 }) {
-  const correctRate = (score / quizLength) * 100;
+  const correctRate = Math.round((score / quizLength) * 100);
   return (
     <motion.div
       initial={{ opacity: 0, y: 100 }}
@@ -53,9 +53,9 @@ export default function ResultCard({
             duration: 1,
             ease: "easeOut",
           }}
-          className="text-7xl font-bold text-gray-50"
+          className="text-7xl font-black text-gray-50 flex items-end gap-1"
         >
-          {correctRate.toFixed(1)}
+          <AnimatedCounter value={correctRate} speed={0.5} className="text-7xl font-bold text-gray-50" />
           <span className="text-sm font-normal">%</span>
         </motion.h1>
         <motion.p
