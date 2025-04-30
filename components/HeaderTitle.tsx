@@ -30,7 +30,7 @@ export default function HeaderTitle() {
         })}
         className="text-center text-gray-200 text-sm md:text-base lg:text-lg"
       >
-        AIに関する知識をテストし、あなたの理解度を測定します。
+        AIに関する知識をテストし、理解度を測定します。
       </motion.p>
       {/* スタートボタン */}
       <Link href="/quiz">
