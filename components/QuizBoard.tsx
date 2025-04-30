@@ -8,12 +8,12 @@ import quizData from "@/data/quiz.json";
 import ResultCard from "./ResultCard";
 import confetti from "canvas-confetti";
 
-type TypeScores = {
+export type TypeScores = {
   基礎知識: number;
-  技術的理解: number;
   倫理: number;
-  応用: number;
   高度概念: number;
+  技術的理解: number;
+  応用: number;
 };
 
 export default function QuizBoard() {
@@ -21,10 +21,10 @@ export default function QuizBoard() {
   const [score, setScore] = useState(0);
   const [typeScores, setTypeScores] = useState<TypeScores>({
     基礎知識: 0,
-    技術的理解: 0,
     倫理: 0,
-    応用: 0,
     高度概念: 0,
+    技術的理解: 0,
+    応用: 0,
   });
   const [isFinished, setIsFinished] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
