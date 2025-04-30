@@ -30,7 +30,7 @@ export default function HeaderTitle() {
         })}
         className="text-center text-gray-200 text-sm md:text-base lg:text-lg"
       >
-        あなたの性格や趣味から、どのAIがあなたに最も合うかを診断します。
+        AIに関する知識をテストし、あなたの理解度を測定します。
       </motion.p>
       {/* スタートボタン */}
       <Link href="/quiz">
