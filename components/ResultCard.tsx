@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
 import RadarChartCard from "@/components/RadarChart";
 
+
 type TypeScores = {
   基礎知識: number;
   技術的理解: number;
@@ -28,7 +29,7 @@ export default function ResultCard({
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: "spring", bounce: 0.6, duration: 1, ease: "easeOut" }}
-      className="w-[360px] h-[480px] flex flex-col items-center justify-between gap-4 pt-10 pb-4 text-center bg-gray-950 text-gray-400 shadow-lg rounded-xl overflow-hidden"
+      className="w-[360px] h-[480px] flex flex-col items-center justify-between gap-4 pt-10 pb-4 text-center bg-linear-[150deg] from-black to-gray-900 text-gray-400 shadow-2xl shadow-emerald-700/50 rounded-xl overflow-hidden"
     >
       <div className="flex flex-col items-center justify-center gap-1">
         <motion.h2
@@ -72,8 +73,9 @@ export default function ResultCard({
       </div>
       <RadarChartCard typeScores={typeScores} />
       <Button
-        className="rounded-full size-8 cursor-pointer"
+        className="rounded-full size-8 cursor-pointer border-none"
         onClick={onRestart}
+        variant="outline"
       >
         <RotateCcw className="size-4" />
       </Button>
