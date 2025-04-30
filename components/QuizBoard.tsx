@@ -52,9 +52,11 @@ export default function QuizBoard() {
     initializeUser();
   }, []);
 
-  // 將問題依據id打散順序重新排列，避免重複問題
+  // 問題の順序をランダムに並べ替え、重複を避ける
   const shuffledQuizData = useMemo(() => {
-    const uniqueQuestions = Array.from(new Map(quizData.map(q => [q.id, q])).values());
+    const uniqueQuestions = Array.from(
+      new Map(quizData.map((q) => [q.id, q])).values()
+    );
     return [...uniqueQuestions].sort(() => Math.random() - 0.5);
   }, []);
 
