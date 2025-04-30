@@ -31,7 +31,7 @@ export default function QuizCard({ question, options, correctAnswer, onAnswer }:
     >
       <div
         data-quiz-question
-        className="w-full max-w-[420px] h-full p-8 flex items-start bg-gray-950"
+        className="w-full max-w-[420px] h-full px-8 pt-16 pb-4 flex items-start bg-gray-950"
       >
         <DecryptedText
           text={question}
