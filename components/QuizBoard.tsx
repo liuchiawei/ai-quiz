@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import confetti from "canvas-confetti";
 import ProgressBar from "@/components/QuizProgressBar";
 import QuizCard from "@/components/QuizCard";
@@ -171,6 +172,9 @@ export default function QuizBoard() {
           onAnswer={handleAnswer}
         />
       )}
+      <Link href="/" className="absolute bottom-4 left-1/2 -translate-x-1/2 text-gray-400 text-sm hover:text-gray-100">
+        back to home
+      </Link>
     </motion.div>
   );
 }
