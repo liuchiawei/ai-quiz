@@ -28,7 +28,7 @@ export default function QuizCard({ question, options, correctAnswer, onAnswer }:
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: 'spring', bounce: 0.5, duration: 1, ease: "easeOut" }}
       className='w-full max-w-[420px] h-full max-h-[594px] flex flex-col items-center justify-center bg-gray-950 shadow-lg shadow-emerald-700/50 rounded-xl overflow-hidden'>
-      <div data-quiz-question className='w-full h-42 p-8 flex items-start justify-between bg-gray-950'>
+      <div data-quiz-question className='w-full h-42 p-8 flex items-start bg-gray-950'>
         <DecryptedText text={question} sequential={true} speed={18} animateOn='view' className='text-xl font-bold text-white text-justify tracking-wide leading-9 text-wrap' encryptedClassName='text-emerald-600 text-sm'/>
       </div>
       <div data-quiz-options className='w-full h-full grid grid-cols-2 *:size-full *:rounded-none'>
