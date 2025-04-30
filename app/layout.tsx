@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto, Roboto_Mono, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 import LetterGlitch from "@/components/LetterGlitch";
 
 const roboto = Roboto({
@@ -43,6 +44,7 @@ export default function RootLayout({
           smooth={true}
           className="brightness-50"
         />
+        <Analytics />
       </body>
     </html>
   );
