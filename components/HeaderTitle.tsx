@@ -43,7 +43,7 @@ export default function HeaderTitle() {
             ease: "easeOut",
             delay: 0.3 * i,
           })}
-          className="mt-8 cursor-pointer border border-white rounded-full backdrop-blur-xs text-gray-50 px-8 py-2 relative z-10 transition-all hover:shadow-xl hover:shadow-green-500/50 active:translate-y-1 overflow-hidden after:absolute after:left-0 after:top-0 after:z-0 after:right-full after:h-full after:bg-white/30  after:transition-all after:duration-200 hover:after:right-0 hover:text-white"
+          className="mt-8 cursor-pointer border border-gray-300 rounded-full backdrop-blur-xs text-gray-400 px-8 py-2 relative z-10 transition-all hover:text-gray-50 hover:shadow-lg hover:shadow-emerald-500/50 active:translate-y-1 overflow-hidden after:absolute after:left-0 after:top-0 after:-z-10 after:right-full after:h-full after:bg-emerald-500/30  after:transition-all after:duration-200 hover:after:right-0 hover:text-white"
         >
           START
         </motion.button>
