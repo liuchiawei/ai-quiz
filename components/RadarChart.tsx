@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/chart";
 import { TypeScores } from "./QuizBoard";
 import { map } from "framer-motion/client";
-import quizData from "@/data/quiz.json";
+import quizData from "@/data/quiz_hai.json";
 
 const chartConfig = {
   value: {
