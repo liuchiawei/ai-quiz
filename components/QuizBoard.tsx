@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
 import ProgressBar from "@/components/QuizProgressBar";
@@ -28,17 +28,69 @@ export default function QuizBoard() {
     応用: 0,
   });
   const [isFinished, setIsFinished] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const startTime = useRef<number>(0);
 
-  // shuffle the order of the quiz data
-  const shuffledQuizData = quizData.sort(() => Math.random() - 0.5);
+  // ユーザー初期化
+  useEffect(() => {
+    const initializeUser = async () => {
+      try {
+        const response = await fetch("/api/user", {
+          method: "POST",
+        });
+        const data = await response.json();
+        if (data.success) {
+          setUserId(data.user.id);
+          startTime.current = Date.now();
+        }
+      } catch (error) {
+        console.error("Error initializing user:", error);
+      }
+    };
 
-  const nextQuestion = () => {
+    initializeUser();
+  }, []);
+
+  // 將問題依據id打散順序重新排列，避免重複問題
+  const shuffledQuizData = useMemo(() => {
+    const uniqueQuestions = Array.from(new Map(quizData.map(q => [q.id, q])).values());
+    return [...uniqueQuestions].sort(() => Math.random() - 0.5);
+  }, []);
+
+  const nextQuestion = async () => {
     if (currentQuestion < quizData.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       // クイズ終了
       setIsFinished(true);
+
+      // クイズ結果の記録を資料庫に保存
+      if (userId) {
+        try {
+          const response = await fetch("/api/record", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              score,
+              typeScores,
+              timeSpent: Math.floor((Date.now() - startTime.current) / 1000),
+              userId,
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to save record");
+          }
+
+          const data = await response.json();
+          console.log("Record saved successfully:", data);
+        } catch (error) {
+          console.error("Error saving record:", error);
+        }
+      }
 
       // お祝い效果
       if (canvasRef.current) {
@@ -55,7 +107,7 @@ export default function QuizBoard() {
     }
   };
 
-  const handleAnswer = (isCorrect: boolean) => {
+  const handleAnswer = async (isCorrect: boolean) => {
     // 回答が正解
     if (isCorrect) {
       // スコア加算
@@ -85,6 +137,8 @@ export default function QuizBoard() {
     });
     // クイズ終了フラグ初期化
     setIsFinished(false);
+    // タイマー初期化
+    startTime.current = Date.now();
   };
 
   return (

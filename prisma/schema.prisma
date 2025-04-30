@@ -15,6 +15,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String   @unique
+  name      String?
+  records   Record[] // 與 Record 模型建立一對多關係
+}
+
 model Record {
   id          String   @id @default(uuid())
   createdAt   DateTime @default(now())
@@ -23,4 +32,6 @@ model Record {
   typeScores  Json
   timeSpent   Int // 作答時間（秒）
   completedAt DateTime // 完成時間
+  userId      String // 添加用戶 ID 字段
+  user        User     @relation(fields: [userId], references: [id]) // 建立與 User 的關係
 }
